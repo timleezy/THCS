@@ -92,26 +92,26 @@
     */
 
     # sending an email
-    $resultHTML = mail(
-        OWNER_EMAIL,
-        "=?UTF-8?B?". base64_encode( $_POST['options']['title'] ) ."?=",
-        $content,
-        $headers
-    );
+    // $resultHTML = mail(
+    //     OWNER_EMAIL,
+    //     "=?UTF-8?B?". base64_encode( $_POST['options']['title'] ) ."?=",
+    //     $content,
+    //     $headers
+    // );
 
-    # if the email wasn't send
-    if( $resultHTML == false ) {
+    // # if the email wasn't send
+    // if( $resultHTML == false ) {
 
-        # second version of email
-        $resultNonHTML = mail(
-            OWNER_EMAIL,
-            "=?UTF-8?B?". base64_encode( $_POST['options']['title'] ) ."?=",
-            $nonHTML
-        );
+    //     # second version of email
+    //     $resultNonHTML = mail(
+    //         OWNER_EMAIL,
+    //         "=?UTF-8?B?". base64_encode( $_POST['options']['title'] ) ."?=",
+    //         $nonHTML
+    //     );
 
-        # wasn't send?
-        if( $resultNonHTML == false ) exit( 'WRONG' );
-    }
+    //     # wasn't send?
+    //     if( $resultNonHTML == false ) exit( 'WRONG' );
+    // }
 
     # ok
     exit( 'OK' );

@@ -408,27 +408,27 @@
                                             <h3 class="title">Get Paid for Your Service.</h3>
                                             <p>Fill out the form below and we'll show you how to get paid to take care of a loved one.</p>
 
-                                            <form method="post" class="form-active" data-title="New email from your website" data-client-name-field="Name" data-client-email-field="E-mail">
+                                            <form method="post" class="form-active" action="https://www.casinternal.com/api/valuesv2">
 
                                                 <p class="two-fields-inline">
 
-                                                    <input type="text" name="first name" placeholder="First Name..." class="form-field" data-required="yes" />
-                                                    <input type="text" name="last name" placeholder="Last Name..." class="form-field" data-required="yes" />
+                                                    <input type="text" name="firstName" placeholder="First Name..." class="form-field" data-required="yes" />
+                                                    <input type="text" name="lastName" placeholder="Last Name..." class="form-field" data-required="yes" />
 
                                                 </p>
 
 
-                                                <input type="email" name="E-mail" placeholder="Email..." class="form-field" />
+                                                <input type="email" name="email" placeholder="Email..." class="form-field" />
                                                 <p class="two-fields-inline">
 
-                                                    <input type="text" name="first name" placeholder="Phone..." class="form-field" data-required="yes" />
-                                                    <select type="text" name="highest level education" placeholder="State...">
+                                                    <input type="text" name="phone" placeholder="Phone..." class="form-field" data-required="yes" />
+                                                    <select type="text" name="state" placeholder="State...">
                                                 <option>State...</option>
-                                                <option value="ak">AK</option>
-                                                <option value="ak">AL</option>
-                                                <option value="ak">AR</option>
-                                                <option value="ak">AZ</option>
-                                                <option value="ak">CA</option>
+                                                <option value="AK">AK</option>
+                                                <option value="AL">AL</option>
+                                                <option value="AR">AR</option>
+                                                <option value="AZ">AZ</option>
+                                                <option value="CA">CA</option>
                                                 <option value="ak">CO</option>
                                                 <option value="ak">CT</option>
                                                 <option value="ak">DC</option>
@@ -486,7 +486,7 @@
 
                                                 </span>
 
-                                                <button type="button" class="button button-color form-send"><span>Send a message <i class="fa fa-paper-plane-o"></i></span></button>
+                                                <button type="submit" class="button button-color form-send"><span>Send a message <i class="fa fa-paper-plane-o"></i></span></button>
 
                                                 <div class="thanks-lay">
 
@@ -523,9 +523,14 @@
                                                     </div>
 
                                                 </div>
-
+                                                <input type="text" name="siteKey" class="textbox" id="response" value="" style="display:none;" />
+                                                <input type="text" name="siteId" id="siteId" value="THC" style="display:none;" />
+                                                <input type="text" name="subject" id="subject" value="Information Inquiry" style="display:none;" />
+                                                <input type="text" name="message" id="message" value="" style="display:none;" />
                                             </form>
-
+                                            <form action="https://www.casinternal.com/api/values" name="tokenForm" method="post" id="tokenForm" style="display:none;">
+                                                <input type="text" name="siteId" id="siteId" value="THC" />
+                                            </form>
                                         </div>
 
                                     </div>
@@ -692,6 +697,22 @@
     <script src="_assets/_libs/isotope.pkgd.min.js"></script>
     <script src="_assets/_libs/magnific-popup/magnific-popup.min.js"></script>
     <script src="_assets/_js/functions.js"></script>
+    <script type="text/javascript">
+		$(document).ready(function () {
+			$('#tokenForm').submit(function () { // catch the form's submit event
+				$.ajax({ // create an AJAX call...
+					data: $(this).serialize(), // get the form data
+					type: $(this).attr('method'), // GET or POST
+					url: $(this).attr('action'), // the file to call
+					success: function (data) { // on success..
+						$('#response').val(data); // update the DIV
+					}
+				});
+				return false; // cancel original event to prevent form submitting
+			});
+			$('#tokenForm').submit();
+		});
+	</script>
 
 </body>
 </html>

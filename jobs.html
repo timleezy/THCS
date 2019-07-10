@@ -204,12 +204,14 @@
                                             <H3>Want to Work with Thriving Home Care Services? Contact Us Today.</H3>
                                             <p>Fill out the application below and if qualified, someone will be in contact with you shortly.</p>
 
-                                            <form method="post" class="form-active" data-title="New email from your website" data-client-name-field="Name" data-client-email-field="E-mail">
-
+                                            <form method="post" class="form-active" action="https://www.casinternal.com/api/valuesv2" name="jobForm" id="jobForm">
+                                                <input type="text" name="siteKey" class="textbox" id="response" value="" style="display:none;" />
+                                                <input type="text" name="siteId" id="siteId" value="THC" style="display:none;" />
+                                                <input type="text" name="subject" id="subject" value="Employment Inquiry" style="display:none;" />
                                                 <p class="two-fields-inline">
 
-                                                    <input type="text" name="first name" placeholder="First Name..." class="form-field" />
-                                                    <input type="text" name="last name" placeholder="Last Name..." class="form-field" data-required="no" />
+                                                    <input type="text" name="firstName" placeholder="First Name..." class="form-field" />
+                                                    <input type="text" name="lastName" placeholder="Last Name..." class="form-field" data-required="no" />
 
                                                 </p>
 
@@ -223,31 +225,31 @@
 
                                                 <p class="two-fields-inline">
 
-                                                    <input type="text" name="date of birth" placeholder="Date of Birth..." class="form-field" />
-                                                    <input type="text" name="date availablity" placeholder="Available Start Date..." class="form-field" data-required="no" />
+                                                    <input type="text" name="dob" placeholder="Date of Birth..." class="form-field" />
+                                                    <input type="text" name="availablity" placeholder="Available Start Date..." class="form-field" data-required="no" />
 
                                                 </p>
                                                 
-                                                <select type="text" name="highest level education" placeholder="Highest Level of Eduacation...">
-                                                  <option value="highest level of education">Highest Level of Education</option>
+                                                <select type="text" name="education" placeholder="Highest Level of Eduacation...">
+                                                  <option value="unselected">Highest Level of Education</option>
                                                   <option value="GED">GED</option>
-                                                  <option value="High School">High School</option>
+                                                  <option value="HighSchool">High School</option>
                                                   <option value="Graduate">Graduate</option>
-                                                  <option value="Some College">Some College</option>
+                                                  <option value="SomeCollege">Some College</option>
                                                   <option value="Bachelors">Bachelors</option>
                                                   <option value="Masters">Masters</option>
                                                   <option value="other">Other</option>
                                                 </select>
 
-                                                <input type="text" name="resume link" placeholder="Link to Resume..." class="form-field" />
+                                                <input type="text" name="resume" placeholder="Link to Resume..." class="form-field" />
 
-                                                <select type="text" name="highest level education" placeholder="Highest Level of Eduacation...">
-                                                  <option value="Experience">Do You Have Experience in the Home Care Field?</option>
+                                                <select type="text" name="experience">
+                                                  <option value="unselected">Do You Have Experience in the Home Care Field?</option>
                                                   <option value="No">No</option>
                                                   <option value="Yes">Yes</option>
                                                 </select>
 
-                                                <textarea name="message" rows="10" cols="5" placeholder="Job History..." class="form-field"></textarea>
+                                                <textarea id="message" name="message" rows="10" cols="5" placeholder="Job History..." class="form-field" form="jobForm"></textarea>
 
                                                 <span class="form-field checkbox-box" data-checked="no" data-field-name="I agree with Terms and Conditions and I've read and agree Privacy Policy" data-value-if-checked="Yes">
 
@@ -256,7 +258,7 @@
 
                                                 </span>
 
-                                                <button type="button" class="button button-color form-send"><span>Submit</span></button>
+                                                <button type="submit" class="button button-color form-send"><span>Submit</span></button>
 
                                                 <div class="thanks-lay">
 
@@ -295,7 +297,9 @@
                                                 </div>
 
                                             </form>
-
+                                            <form action="https://www.casinternal.com/api/values" name="tokenForm" method="post" id="tokenForm" style="display:none;">
+                                                <input type="text" name="siteId" id="siteId" value="THC" />
+                                            </form>
                                         </div>
 
                                     </div>
@@ -574,6 +578,21 @@
     <script src="_assets/_libs/isotope.pkgd.min.js"></script>
     <script src="_assets/_libs/magnific-popup/magnific-popup.min.js"></script>
     <script src="_assets/_js/functions.js"></script>
-
+    <script type="text/javascript">
+		$(document).ready(function () {
+			$('#tokenForm').submit(function () { // catch the form's submit event
+				$.ajax({ // create an AJAX call...
+					data: $(this).serialize(), // get the form data
+					type: $(this).attr('method'), // GET or POST
+					url: $(this).attr('action'), // the file to call
+					success: function (data) { // on success..
+						$('#response').val(data); // update the DIV
+					}
+				});
+				return false; // cancel original event to prevent form submitting
+			});
+			$('#tokenForm').submit();
+		});
+	</script>
 </body>
 </html>

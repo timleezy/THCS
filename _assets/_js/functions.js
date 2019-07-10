@@ -963,53 +963,53 @@ $( document ).ready( function() {
     *
     */
 
-    $( 'body' ).on( 'click touchstart', '.form-send', function( event ) {
+    // $( 'body' ).on( 'click touchstart', '.form-send', function( event ) {
 
-        event.preventDefault();
+    //     event.preventDefault();
 
-        var form = $( this ).parents( 'form.form-active' );
-        var fields = [];
-        var isError = false;
-        var formOptions = {
-            'client-name-field': form.data( 'client-name-field' ),
-            'client-email-field': form.data( 'client-email-field' ),
-            'title': form.data( 'title' )
-        };
+    //     var form = $( this ).parents( 'form.form-active' );
+    //     var fields = [];
+    //     var isError = false;
+    //     var formOptions = {
+    //         'client-name-field': form.data( 'client-name-field' ),
+    //         'client-email-field': form.data( 'client-email-field' ),
+    //         'title': form.data( 'title' )
+    //     };
 
-        form.find( '.form-field' ).each( function() {
+    //     form.find( '.form-field' ).each( function() {
 
-            var field = $.martanianOakHouseIsFormFieldValid( $( this ) );
+    //         var field = $.martanianOakHouseIsFormFieldValid( $( this ) );
 
-            if( field !== false ) fields[fields.length] = field;
-            else isError = true;
+    //         if( field !== false ) fields[fields.length] = field;
+    //         else isError = true;
 
-        });
+    //     });
 
-        if( isError == false ) {
+    //     if( isError == false ) {
 
-            var thanksLay = form.children( '.thanks-lay' );
-            thanksLay.fadeIn( 300 );
+    //         var thanksLay = form.children( '.thanks-lay' );
+    //         thanksLay.fadeIn( 300 );
 
-            $.ajax({ url: '_assets/_php/submit.php',
-                     data: { 'fields': fields, 'options': formOptions },
-                     type: 'post',
-                     success: function( output ) {
+    //         $.ajax({ url: '_assets/_php/submit.php',
+    //                  data: { 'fields': fields, 'options': formOptions },
+    //                  type: 'post',
+    //                  success: function( output ) {
 
-                         var layClass = output == 'OK' ? '.thanks-lay-content-sent' : '.thanks-lay-content-not-sent';
+    //                      var layClass = output == 'OK' ? '.thanks-lay-content-sent' : '.thanks-lay-content-not-sent';
 
-                         thanksLay.find( '.thanks-lay-content-sending' ).css({ 'display': 'none' });
-                         thanksLay.find( layClass ).fadeIn( 300 );
+    //                      thanksLay.find( '.thanks-lay-content-sending' ).css({ 'display': 'none' });
+    //                      thanksLay.find( layClass ).fadeIn( 300 );
 
-                     },
-                     error: function( output ) {
+    //                  },
+    //                  error: function( output ) {
 
-                         thanksLay.find( '.thanks-lay-content-sending' ).css({ 'display': 'none' });
-                         thanksLay.find( '.thanks-lay-content-not-sent' ).fadeIn( 300 );
+    //                      thanksLay.find( '.thanks-lay-content-sending' ).css({ 'display': 'none' });
+    //                      thanksLay.find( '.thanks-lay-content-not-sent' ).fadeIn( 300 );
 
-                     }});
-        }
+    //                  }});
+    //     }
 
-    });
+    // });
 
    /**
     *
